@@ -50,10 +50,14 @@ class RoastValidator:
             check.run(line)
 
 
+def resolve_output_dir():
+    """Base dir for the entry file: $MAKEFUN_OUTPUT_DIR, else /output."""
+    return os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
+
+
 def output_path():
     """Destination file: $MAKEFUN_OUTPUT_DIR/entry.txt (default /output)."""
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    return os.path.join(out_dir, "entry.txt")
+    return os.path.join(resolve_output_dir(), "entry.txt")
 
 
 def main():
